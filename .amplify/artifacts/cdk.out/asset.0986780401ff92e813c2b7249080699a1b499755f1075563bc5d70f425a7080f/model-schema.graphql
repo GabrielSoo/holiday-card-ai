@@ -1,0 +1,8 @@
+type AskBedrockReturnType @aws_api_key
+{
+  body: String
+}
+
+type Query {
+  askBedrock(prompt: String, background: String, style: String, text: String, image: String): AskBedrockReturnType @aws_api_key
+}

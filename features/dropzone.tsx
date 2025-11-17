@@ -128,7 +128,7 @@ export default function Dropzone({ value, onValueChange }: DropzoneProps) {
               src={capturedImage}
               alt="Uploaded"
               fill
-              className="object-cover"
+              className="object-contain"
             />
             <Button
               type="button"

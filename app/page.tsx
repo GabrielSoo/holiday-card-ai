@@ -16,13 +16,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Spinner } from "@/components/ui/spinner";
 import { Textarea } from "@/components/ui/textarea";
 
 import Dropzone from "@/features/dropzone";
 import Image from "next/image";
 import StyleSelector from "@/features/style-select";
 
+import { compositeTextOnImage } from "@/lib/image-utils";
+import { generateHolidayCard } from "./actions";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
@@ -37,8 +41,8 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 export default function Home() {
-  // const [result, setResult] = useState<string>("");
-  // const [loading, setloading] = useState(false);
+  const [loading, setloading] = useState(false);
+  const [finalImage, setFinalImage] = useState<string>("");
 
   const {
     register,
@@ -58,8 +62,36 @@ export default function Home() {
   });
 
   const onSubmit = async (data: FormValues) => {
-    // setloading(true);
-    console.log("onSubmit");
+    setloading(true);
+    setFinalImage("");
+
+    try {
+      // Step 1: Generate the AI image
+      const formData = new FormData();
+      formData.append("prompt", data.prompt);
+      formData.append("background", data.background);
+      formData.append("style", data.style);
+      formData.append("text", data.text);
+      formData.append("image", data.image);
+
+      const cardData = await generateHolidayCard(formData);
+      const generatedImage = typeof cardData === "string" ? cardData : "";
+
+      if (!generatedImage) {
+        throw new Error("No image generated");
+      }
+
+      // Step 2: Composite text onto the image
+      const compositedImage = await compositeTextOnImage(
+        generatedImage,
+        data.text
+      );
+      setFinalImage(compositedImage);
+      setloading(false);
+    } catch (e) {
+      setloading(false);
+      alert(`An error occurred: ${e}`);
+    }
   };
 
   return (
@@ -75,7 +107,7 @@ export default function Home() {
         </div>
       </div>
 
-      <section className="max-w-4xl mx-auto w-full">
+      <section className="max-w-3xl mx-auto w-full">
         <form onSubmit={handleSubmit(onSubmit)}>
           <FieldGroup>
             <FieldSet>
@@ -184,12 +216,52 @@ export default function Home() {
 
             {/* Submit Button */}
             <Field orientation="horizontal" className="mt-6">
-              <Button type="submit" size="lg" className="w-full">
-                創造聖誕卡
+              <Button
+                type="submit"
+                size="lg"
+                className="w-full"
+                disabled={loading}
+              >
+                {loading ? (
+                  <span className="flex items-center gap-2">
+                    <Spinner />
+                    生成中...
+                  </span>
+                ) : (
+                  "創造聖誕卡"
+                )}
               </Button>
             </Field>
           </FieldGroup>
         </form>
+
+        {/* Result Display */}
+        {finalImage && !loading && (
+          <section className="mt-10 border border-gray-200 bg-gray-50 rounded-xl p-6">
+            <div className="flex flex-col items-center gap-4">
+              <h2 className="text-xl font-semibold">您的聖誕卡:</h2>
+
+              {/* Display the composited image with text */}
+              <div className="relative w-full max-w-2xl aspect-[672/1024] rounded-lg overflow-hidden">
+                <Image
+                  src={finalImage}
+                  alt="Generated holiday card with text"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+
+              {/* Download button - downloads the composited image */}
+              <a
+                href={finalImage}
+                download="holiday-card.png"
+                className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+              >
+                下載聖誕卡
+              </a>
+            </div>
+          </section>
+        )}
       </section>
     </main>
   );

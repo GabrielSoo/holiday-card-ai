@@ -1,0 +1,67 @@
+{
+  "data": {
+    "url": "https://dwxo7pmo6ncmrasdnmjjn4a2gu.appsync-api.us-east-1.amazonaws.com/graphql",
+    "aws_region": "us-east-1",
+    "api_key": "da2-vk3mrsqimrdpddhbek64lpchgy",
+    "default_authorization_type": "API_KEY",
+    "authorization_types": [
+      "AWS_IAM"
+    ],
+    "model_introspection": {
+      "version": 1,
+      "models": {},
+      "enums": {},
+      "nonModels": {
+        "AskBedrockReturnType": {
+          "name": "AskBedrockReturnType",
+          "fields": {
+            "body": {
+              "name": "body",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            }
+          }
+        }
+      },
+      "queries": {
+        "askBedrock": {
+          "name": "askBedrock",
+          "isArray": false,
+          "type": {
+            "nonModel": "AskBedrockReturnType"
+          },
+          "isRequired": false,
+          "arguments": {
+            "prompt": {
+              "name": "prompt",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            },
+            "background": {
+              "name": "background",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            },
+            "style": {
+              "name": "style",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            },
+            "image": {
+              "name": "image",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            }
+          }
+        }
+      }
+    }
+  },
+  "version": "1.4"
+}
