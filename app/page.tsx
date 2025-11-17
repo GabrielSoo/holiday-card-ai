@@ -1,65 +1,196 @@
+"use client";
+
+import { Button } from "@/components/ui/button";
+import {
+  Field,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+  FieldSet,
+} from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+
+import Dropzone from "@/features/dropzone";
 import Image from "next/image";
+import StyleSelector from "@/features/style-select";
+
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+
+const formSchema = z.object({
+  prompt: z.string().min(1, "請輸入提示"),
+  background: z.string().min(1, "請選擇背景"),
+  style: z.string().min(1, "請選擇藝術風格"),
+  text: z.string().min(1, "請輸入封面文字"),
+  image: z.string().min(1, "請上載圖片"),
+});
+
+type FormValues = z.infer<typeof formSchema>;
 
 export default function Home() {
+  // const [result, setResult] = useState<string>("");
+  // const [loading, setloading] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setValue,
+    watch,
+  } = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      prompt: "",
+      background: "",
+      style: "吉布利",
+      text: "",
+      image: "",
+    },
+  });
+
+  const onSubmit = async (data: FormValues) => {
+    // setloading(true);
+    console.log("onSubmit");
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="flex min-h-screen flex-col items-center p-4 md:p-8 lg:p-12">
+      <div className="pb-10 mx-auto text-center flex flex-col space-y-6">
+        <h1 className=" text-2xl font-bold text-gray-900 sm:text-4xl">
+          人工智能聖誕卡
+        </h1>
+
+        <div className="flex justify-center mx-auto gap-8">
+          <Image src="/shareforgood.svg" alt="Logo" width={60} height={60} />
+          <Image src="/manulife.svg" alt="Logo" width={140} height={140} />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </div>
+
+      <section className="max-w-4xl mx-auto w-full">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <FieldGroup>
+            <FieldSet>
+              {/* Prompt */}
+              <Field>
+                <FieldLabel htmlFor="prompt">提示</FieldLabel>
+                <Textarea
+                  id="prompt"
+                  placeholder="例如：一個家庭在聖誕樹周圍慶祝"
+                  className="min-h-24"
+                  rows={4}
+                  {...register("prompt")}
+                />
+                <FieldError
+                  errors={
+                    errors.prompt
+                      ? [{ message: errors.prompt.message }]
+                      : undefined
+                  }
+                >
+                  {errors.prompt?.message}
+                </FieldError>
+              </Field>
+
+              {/* Background */}
+              <Field>
+                <FieldLabel htmlFor="background">背景</FieldLabel>
+                <Select
+                  value={watch("background")}
+                  onValueChange={(value) => setValue("background", value)}
+                >
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="選擇背景" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="hong-kong">香港</SelectItem>
+                    <SelectItem value="london">倫敦</SelectItem>
+                    <SelectItem value="village">聖誕村莊</SelectItem>
+                  </SelectContent>
+                </Select>
+                <FieldError
+                  errors={
+                    errors.background
+                      ? [{ message: errors.background.message }]
+                      : undefined
+                  }
+                >
+                  {errors.background?.message}
+                </FieldError>
+              </Field>
+
+              {/* Style */}
+              <Field>
+                <FieldLabel htmlFor="style">藝術風格</FieldLabel>
+                <StyleSelector
+                  value={watch("style")}
+                  onValueChange={(value) => setValue("style", value)}
+                />
+                <FieldError
+                  errors={
+                    errors.style
+                      ? [{ message: errors.style.message }]
+                      : undefined
+                  }
+                >
+                  {errors.style?.message}
+                </FieldError>
+              </Field>
+
+              {/* Cover Text */}
+              <Field>
+                <FieldLabel htmlFor="text">封面文字</FieldLabel>
+                <Input
+                  id="text"
+                  type="text"
+                  placeholder="例如：聖誕快樂"
+                  {...register("text")}
+                />
+                <FieldError
+                  errors={
+                    errors.text ? [{ message: errors.text.message }] : undefined
+                  }
+                >
+                  {errors.text?.message}
+                </FieldError>
+              </Field>
+
+              {/* Image */}
+              <Field>
+                <FieldLabel htmlFor="image">圖片</FieldLabel>
+                <Dropzone
+                  value={watch("image")}
+                  onValueChange={(value) => setValue("image", value)}
+                />
+                <FieldError
+                  errors={
+                    errors.image
+                      ? [{ message: errors.image.message }]
+                      : undefined
+                  }
+                >
+                  {errors.image?.message}
+                </FieldError>
+              </Field>
+            </FieldSet>
+
+            {/* Submit Button */}
+            <Field orientation="horizontal" className="mt-6">
+              <Button type="submit" size="lg" className="w-full">
+                創造聖誕卡
+              </Button>
+            </Field>
+          </FieldGroup>
+        </form>
+      </section>
+    </main>
   );
 }
