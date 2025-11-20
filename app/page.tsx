@@ -2,6 +2,13 @@
 
 import { Button } from "@/components/ui/button";
 import {
+  Empty,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/components/ui/empty";
+import {
   Field,
   FieldError,
   FieldGroup,
@@ -16,11 +23,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Separator } from "@/components/ui/separator";
 import { Spinner } from "@/components/ui/spinner";
-import { Textarea } from "@/components/ui/textarea";
+import { ImageOff, Download, RotateCw } from "lucide-react";
 
 import Dropzone from "@/features/dropzone";
 import Image from "next/image";
+import Footer from "@/features/footer";
+import { Navbar } from "@/features/navbar";
 import StyleSelector from "@/features/style-select";
 
 import { compositeTextOnImage } from "@/lib/image-utils";
@@ -39,9 +49,20 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
+interface Creation {
+  id: string;
+  image: string;
+  text: string;
+  background: string;
+  style: string;
+  timestamp: Date;
+}
+
 export default function Home() {
   const [loading, setloading] = useState(false);
   const [finalImage, setFinalImage] = useState<string>("");
+  const [currentPrompt, setCurrentPrompt] = useState<string>("");
+  const [previousCreations, setPreviousCreations] = useState<Creation[]>([]);
 
   const {
     register,
@@ -49,6 +70,7 @@ export default function Home() {
     formState: { errors },
     setValue,
     watch,
+    reset,
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -72,11 +94,17 @@ export default function Home() {
       formData.append("image", data.image);
 
       const cardData = await generateHolidayCard(formData);
-      const generatedImage = typeof cardData === "string" ? cardData : "";
+      const generatedImage =
+        typeof cardData === "object" && cardData.image ? cardData.image : "";
+      const fullPrompt =
+        typeof cardData === "object" && cardData.prompt ? cardData.prompt : "";
 
       if (!generatedImage) {
         throw new Error("No image generated");
       }
+
+      // Save the full prompt
+      setCurrentPrompt(fullPrompt);
 
       // Step 2: Composite text onto the image
       const compositedImage = await compositeTextOnImage(
@@ -84,6 +112,18 @@ export default function Home() {
         data.text
       );
       setFinalImage(compositedImage);
+
+      // Step 3: Add to previous creations
+      const newCreation: Creation = {
+        id: Date.now().toString(),
+        image: compositedImage,
+        text: data.text,
+        background: data.background,
+        style: data.style,
+        timestamp: new Date(),
+      };
+      setPreviousCreations((prev) => [newCreation, ...prev]);
+
       setloading(false);
     } catch (e) {
       setloading(false);
@@ -91,154 +131,242 @@ export default function Home() {
     }
   };
 
+  const handleGenerateAgain = handleSubmit(onSubmit);
+
   return (
-    <main className="flex min-h-screen flex-col items-center p-4 md:p-8 lg:p-12">
-      <div className="pb-10 mx-auto text-center flex flex-col space-y-6">
-        <h1 className=" text-2xl font-bold text-gray-900 sm:text-4xl">
-          人工智能聖誕卡
-        </h1>
+    <>
+      <Navbar />
+      <main className="flex flex-col md:flex-row min-h-[calc(100vh-10rem)] container mx-auto py-8 px-6 md:px-12 max-w-screen-2xl gap-8">
+        {/* Left Section */}
+        <section className="md:w-[40%] lg:w-[35%] flex flex-col space-y-8">
+          <h1 className=" text-2xl font-bold text-gray-900 md:text-3xl">
+            製作你嘅完美聖誕卡
+          </h1>
 
-        <div className="flex justify-center mx-auto gap-8">
-          <Image src="/shareforgood.svg" alt="Logo" width={60} height={60} />
-          <Image src="/manulife.svg" alt="Logo" width={140} height={140} />
-        </div>
-      </div>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <FieldGroup>
+              <FieldSet>
+                {/* Background */}
+                <Field>
+                  <FieldLabel htmlFor="background">背景</FieldLabel>
+                  <Select
+                    value={watch("background")}
+                    onValueChange={(value) => setValue("background", value)}
+                  >
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="選擇背景" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="hong-kong">香港</SelectItem>
+                      <SelectItem value="london">倫敦</SelectItem>
+                      <SelectItem value="village">聖誕村莊</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FieldError
+                    errors={
+                      errors.background
+                        ? [{ message: errors.background.message }]
+                        : undefined
+                    }
+                  >
+                    {errors.background?.message}
+                  </FieldError>
+                </Field>
 
-      <section className="max-w-3xl mx-auto w-full">
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <FieldGroup>
-            <FieldSet>
-              {/* Background */}
-              <Field>
-                <FieldLabel htmlFor="background">背景</FieldLabel>
-                <Select
-                  value={watch("background")}
-                  onValueChange={(value) => setValue("background", value)}
+                {/* Style */}
+                <Field>
+                  <FieldLabel htmlFor="style">藝術風格</FieldLabel>
+                  <StyleSelector
+                    value={watch("style")}
+                    onValueChange={(value) => setValue("style", value)}
+                  />
+                  <FieldError
+                    errors={
+                      errors.style
+                        ? [{ message: errors.style.message }]
+                        : undefined
+                    }
+                  >
+                    {errors.style?.message}
+                  </FieldError>
+                </Field>
+
+                {/* Cover Text */}
+                <Field>
+                  <FieldLabel htmlFor="text">封面文字</FieldLabel>
+                  <Input
+                    id="text"
+                    type="text"
+                    placeholder="例如：聖誕快樂"
+                    {...register("text")}
+                  />
+                  <FieldError
+                    errors={
+                      errors.text
+                        ? [{ message: errors.text.message }]
+                        : undefined
+                    }
+                  >
+                    {errors.text?.message}
+                  </FieldError>
+                </Field>
+
+                {/* Image */}
+                <Field>
+                  <FieldLabel htmlFor="image">圖片</FieldLabel>
+                  <Dropzone
+                    value={watch("image")}
+                    onValueChange={(value) => setValue("image", value)}
+                  />
+                  <FieldError
+                    errors={
+                      errors.image
+                        ? [{ message: errors.image.message }]
+                        : undefined
+                    }
+                  >
+                    {errors.image?.message}
+                  </FieldError>
+                </Field>
+              </FieldSet>
+
+              {/* Submit Button */}
+              <Field orientation="horizontal" className="mt-6">
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="w-full"
+                  disabled={loading}
                 >
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="選擇背景" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="hong-kong">香港</SelectItem>
-                    <SelectItem value="london">倫敦</SelectItem>
-                    <SelectItem value="village">聖誕村莊</SelectItem>
-                  </SelectContent>
-                </Select>
-                <FieldError
-                  errors={
-                    errors.background
-                      ? [{ message: errors.background.message }]
-                      : undefined
-                  }
-                >
-                  {errors.background?.message}
-                </FieldError>
+                  {loading ? (
+                    <span className="flex items-center gap-2">
+                      <Spinner />
+                      生成中...
+                    </span>
+                  ) : (
+                    "創造聖誕卡"
+                  )}
+                </Button>
               </Field>
+            </FieldGroup>
+          </form>
+        </section>
 
-              {/* Style */}
-              <Field>
-                <FieldLabel htmlFor="style">藝術風格</FieldLabel>
-                <StyleSelector
-                  value={watch("style")}
-                  onValueChange={(value) => setValue("style", value)}
-                />
-                <FieldError
-                  errors={
-                    errors.style
-                      ? [{ message: errors.style.message }]
-                      : undefined
-                  }
-                >
-                  {errors.style?.message}
-                </FieldError>
-              </Field>
+        {/* Right Section */}
+        <section className="flex-1 md:w-[60%] lg:w-[65%] space-y-6">
+          {/* Empty State */}
+          {!finalImage && !loading && (
+            <Empty className="border border-dashed bg-muted/30 w-full mx-auto h-[60vh] flex items-center justify-center">
+              <EmptyHeader>
+                <EmptyMedia variant="icon">
+                  <ImageOff className="size-8" />
+                </EmptyMedia>
+                <EmptyTitle>No Creations Yet</EmptyTitle>
+                <EmptyDescription>
+                  You haven't created any holiday cards yet. Create your first
+                  holiday card to get started.
+                </EmptyDescription>
+              </EmptyHeader>
+            </Empty>
+          )}
 
-              {/* Cover Text */}
-              <Field>
-                <FieldLabel htmlFor="text">封面文字</FieldLabel>
-                <Input
-                  id="text"
-                  type="text"
-                  placeholder="例如：聖誕快樂"
-                  {...register("text")}
-                />
-                <FieldError
-                  errors={
-                    errors.text ? [{ message: errors.text.message }] : undefined
-                  }
-                >
-                  {errors.text?.message}
-                </FieldError>
-              </Field>
+          {/* Loading State */}
+          {loading && (
+            <Empty className="border border-dashed bg-muted/30 w-full mx-auto h-[60vh] flex items-center justify-center">
+              <EmptyHeader>
+                <EmptyMedia variant="icon">
+                  <Spinner className="size-12" />
+                </EmptyMedia>
+                <EmptyTitle>生成中...</EmptyTitle>
+                <EmptyDescription>
+                  正在使用 AI 創造您的聖誕卡，請稍候
+                </EmptyDescription>
+              </EmptyHeader>
+            </Empty>
+          )}
 
-              {/* Image */}
-              <Field>
-                <FieldLabel htmlFor="image">圖片</FieldLabel>
-                <Dropzone
-                  value={watch("image")}
-                  onValueChange={(value) => setValue("image", value)}
-                />
-                <FieldError
-                  errors={
-                    errors.image
-                      ? [{ message: errors.image.message }]
-                      : undefined
-                  }
-                >
-                  {errors.image?.message}
-                </FieldError>
-              </Field>
-            </FieldSet>
-
-            {/* Submit Button */}
-            <Field orientation="horizontal" className="mt-6">
-              <Button
-                type="submit"
-                size="lg"
-                className="w-full"
-                disabled={loading}
-              >
-                {loading ? (
-                  <span className="flex items-center gap-2">
-                    <Spinner />
-                    生成中...
-                  </span>
-                ) : (
-                  "創造聖誕卡"
-                )}
-              </Button>
-            </Field>
-          </FieldGroup>
-        </form>
-
-        {/* Result Display */}
-        {finalImage && !loading && (
-          <section className="mt-10 border border-gray-200 bg-gray-50 rounded-xl p-6">
-            <div className="flex flex-col items-center gap-4">
-              <h2 className="text-xl font-semibold">您的聖誕卡:</h2>
-
-              {/* Display the composited image with text */}
-              <div className="relative w-full max-w-2xl aspect-[672/1024] rounded-lg overflow-hidden">
-                <Image
-                  src={finalImage}
-                  alt="Generated holiday card with text"
-                  fill
-                  className="object-contain"
-                />
+          {/* Result Display */}
+          {finalImage && (
+            <>
+              <div className="w-full mx-auto h-[60vh]">
+                <div className="border border-gray-200 bg-gray-50 rounded-xl p-4 h-full flex">
+                  {/* Display the composited image with text */}
+                  <div className="relative w-full flex-1 min-h-0 rounded-lg overflow-hidden flex items-center justify-center">
+                    <div className="relative w-full h-full">
+                      <Image
+                        src={finalImage}
+                        alt="Generated holiday card with text"
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              {/* Download button - downloads the composited image */}
-              <a
-                href={finalImage}
-                download="holiday-card.png"
-                className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
-              >
-                下載聖誕卡
-              </a>
+              {/* Prompt */}
+              {currentPrompt && (
+                <div className="border border-gray-200 bg-gray-50 rounded-xl p-6">
+                  <p className="font-semibold mb-1">Prompt:</p>
+                  <p className="whitespace-pre-wrap">{currentPrompt}</p>
+                </div>
+              )}
+
+              {/* Action buttons */}
+              <div className="flex gap-3 w-full shrink-0">
+                <Button asChild size="lg" className="flex-1">
+                  <a href={finalImage} download="holiday-card.png">
+                    <Download className="mr-2 h-4 w-4" />
+                    下載
+                  </a>
+                </Button>
+                <Button
+                  onClick={handleGenerateAgain}
+                  variant="outline"
+                  size="lg"
+                  className="min-w-[30%]"
+                >
+                  <RotateCw className="mr-2 h-4 w-4" />
+                  重做
+                </Button>
+              </div>
+            </>
+          )}
+
+          {/* Previous Creations */}
+          {previousCreations.length > 0 && (
+            <div className="space-y-4">
+              <h2 className="text-xl font-semibold">以前嘅創作</h2>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                {previousCreations.map((creation) => (
+                  <div
+                    key={creation.id}
+                    className="group relative aspect-[672/1024] rounded-lg overflow-hidden border border-gray-200 hover:border-gray-400 transition-colors cursor-pointer"
+                  >
+                    <Image
+                      src={creation.image}
+                      alt={creation.text}
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-all flex items-center justify-center">
+                      <a
+                        href={creation.image}
+                        download={`christmas-card-${creation.id}.png`}
+                        className="opacity-0 group-hover:opacity-100 transition-opacity inline-flex items-center justify-center rounded-md text-sm font-medium bg-white text-gray-900 hover:bg-gray-100 h-10 px-4 py-2"
+                      >
+                        <Download className="mr-2 h-4 w-4" />
+                        下載
+                      </a>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-          </section>
-        )}
-      </section>
-    </main>
+          )}
+        </section>
+      </main>
+      <Footer />
+    </>
   );
 }

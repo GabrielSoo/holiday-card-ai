@@ -49,7 +49,7 @@ export default function StyleSelector({
             <Label
               htmlFor={style.value}
               className={cn(
-                "relative flex flex-col items-center justify-center border rounded-lg aspect-[4/3] cursor-pointer transition-all overflow-hidden",
+                "relative flex flex-col border rounded-lg aspect-[3/4] cursor-pointer transition-all overflow-hidden",
                 "peer-data-[state=checked]:ring-4 peer-data-[state=checked]:ring-blue-500 peer-data-[state=checked]:border-none"
               )}
             >
@@ -63,7 +63,7 @@ export default function StyleSelector({
                 className="absolute inset-0 bg-black"
                 style={{ opacity: style.overlay }}
               />
-              <span className="text-lg md:text-xl lg:text-2xl font-bold text-white z-10">
+              <span className="absolute bottom-3 left-3 text-lg md:text-xl lg:text-2xl font-bold text-white z-10">
                 {style.value}
               </span>
             </Label>

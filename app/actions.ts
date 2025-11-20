@@ -37,6 +37,12 @@ export async function generateHolidayCard(formData: FormData) {
    const backgroundDescription = getBackgroundDescription(background);
    const styleDescription = getStyleDescription(style);
 
+   // Build the full prompt text (same as in bedrock.js)
+   const fullPrompt = `Create a illustration with the following specifications:
+- Background setting: ${backgroundDescription}
+- Artistic style: ${styleDescription}
+- High Quality, Highly detailed background environment.`;
+
   const response = await amplifyClient.queries.askBedrock({
     background: backgroundDescription,
     style: styleDescription,
@@ -46,7 +52,7 @@ export async function generateHolidayCard(formData: FormData) {
   const rawBody = response.data?.body;
   console.log("Bedrock raw response body:", rawBody);
   if (!rawBody) {
-    return "";
+    return { image: "", prompt: fullPrompt };
   }
 
   let res: any;
@@ -54,7 +60,7 @@ export async function generateHolidayCard(formData: FormData) {
     res = JSON.parse(rawBody);
   } catch {
     console.log("Bedrock response is not valid JSON, returning raw body");
-    return rawBody;
+    return { image: rawBody, prompt: fullPrompt };
   }
 
   console.log("Bedrock parsed response object:", res);
@@ -63,10 +69,13 @@ export async function generateHolidayCard(formData: FormData) {
  const imageData = res?.images?.[0] ?? "";
   
  if (imageData) {
-   // Return as data URL for direct display in an <img> tag
-   return `data:image/png;base64,${imageData}`;
+   // Return as data URL for direct display in an <img> tag along with the prompt
+   return {
+     image: `data:image/png;base64,${imageData}`,
+     prompt: fullPrompt
+   };
  }
 
  console.log("No image generated");
- return "";
+ return { image: "", prompt: fullPrompt };
 }

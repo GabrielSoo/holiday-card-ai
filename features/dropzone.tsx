@@ -121,7 +121,7 @@ export default function Dropzone({ value, onValueChange }: DropzoneProps) {
   return (
     <>
       {/* Dropbox Area */}
-      <div className="relative border border-dashed rounded-lg p-8 transition-colors border-muted-foreground/25 bg-muted/30">
+      <div className="relative border border-dashed rounded-lg p-4 transition-colors border-muted-foreground/25 bg-muted/30">
         {capturedImage ? (
           <div className="relative w-full aspect-video rounded-lg overflow-hidden">
             <Image
@@ -134,7 +134,7 @@ export default function Dropzone({ value, onValueChange }: DropzoneProps) {
               type="button"
               onClick={removeImage}
               size="icon"
-              className="absolute top-2 right-2"
+              className="absolute top-0 right-0"
             >
               <X className="h-4 w-4" />
             </Button>
