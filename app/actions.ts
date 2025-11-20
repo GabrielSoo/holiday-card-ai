@@ -19,7 +19,7 @@ function getBackgroundDescription(background: string): string {
  */
 function getStyleDescription(style: string): string {
   const styleMap: Record<string, string> = {
-    "吉布利": "Studio Ghibli anime style, hand-drawn animation aesthetic, soft watercolor textures, whimsical and dreamy atmosphere, warm color palette, painterly brush strokes, gentle lighting",
+    "吉布利": "A whimsical Studio Ghibli-style illustration with warm watercolor textures, soft shading, cozy festive atmosphere, gentle falling snow.",
     "寫實": "Photorealistic style, highly detailed, natural lighting, realistic textures and shadows, professional photography quality, crisp details, lifelike rendering",
     "素描": "Pencil sketch style, hand-drawn illustration, visible sketch lines, artistic shading with cross-hatching, black and white with subtle grey tones, artistic and expressive"
   };
@@ -29,7 +29,6 @@ function getStyleDescription(style: string): string {
 
 
 export async function generateHolidayCard(formData: FormData) {
-  const prompt = formData.get("prompt")?.toString() || "";
   const background = formData.get("background")?.toString() || "";
   const style = formData.get("style")?.toString() || "";
   const image = formData.get("image")?.toString() || "";
@@ -39,7 +38,6 @@ export async function generateHolidayCard(formData: FormData) {
    const styleDescription = getStyleDescription(style);
 
   const response = await amplifyClient.queries.askBedrock({
-    prompt,
     background: backgroundDescription,
     style: styleDescription,
     image,

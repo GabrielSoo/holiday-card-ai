@@ -1,3 +1,5 @@
+
+
 /**
  * Composites text onto an image using Canvas API
  * @param imageUrl - Base64 data URL or http URL of the base image

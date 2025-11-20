@@ -31,7 +31,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
 const formSchema = z.object({
-  prompt: z.string().min(1, "請輸入提示"),
   background: z.string().min(1, "請選擇背景"),
   style: z.string().min(1, "請選擇藝術風格"),
   text: z.string().min(1, "請輸入封面文字"),
@@ -53,7 +52,6 @@ export default function Home() {
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      prompt: "",
       background: "",
       style: "吉布利",
       text: "",
@@ -68,7 +66,6 @@ export default function Home() {
     try {
       // Step 1: Generate the AI image
       const formData = new FormData();
-      formData.append("prompt", data.prompt);
       formData.append("background", data.background);
       formData.append("style", data.style);
       formData.append("text", data.text);
@@ -111,27 +108,6 @@ export default function Home() {
         <form onSubmit={handleSubmit(onSubmit)}>
           <FieldGroup>
             <FieldSet>
-              {/* Prompt */}
-              <Field>
-                <FieldLabel htmlFor="prompt">提示</FieldLabel>
-                <Textarea
-                  id="prompt"
-                  placeholder="例如：一個家庭在聖誕樹周圍慶祝"
-                  className="min-h-24"
-                  rows={4}
-                  {...register("prompt")}
-                />
-                <FieldError
-                  errors={
-                    errors.prompt
-                      ? [{ message: errors.prompt.message }]
-                      : undefined
-                  }
-                >
-                  {errors.prompt?.message}
-                </FieldError>
-              </Field>
-
               {/* Background */}
               <Field>
                 <FieldLabel htmlFor="background">背景</FieldLabel>

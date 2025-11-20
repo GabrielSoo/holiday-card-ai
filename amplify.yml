@@ -26,3 +26,4 @@ frontend:
     paths:
       - .pnpm-store/**/*
       - node_modules/**/*
+      - .next/cache/**/*

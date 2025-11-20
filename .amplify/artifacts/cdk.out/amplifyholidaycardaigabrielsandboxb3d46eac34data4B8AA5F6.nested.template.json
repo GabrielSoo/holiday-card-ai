@@ -60,7 +60,7 @@
       "ApiId"
      ]
     },
-    "Expires": 1765962381
+    "Expires": 1766218021
    },
    "UpdateReplacePolicy": "Delete",
    "DeletionPolicy": "Delete",
@@ -328,7 +328,7 @@
       {
        "Action": "bedrock:InvokeModel",
        "Effect": "Allow",
-       "Resource": "arn:aws:bedrock:us-east-1::foundation-model/amazon.nova-lite-v1:0"
+       "Resource": "arn:aws:bedrock:us-east-1::foundation-model/amazon.nova-canvas-v1:0"
       }
      ],
      "Version": "2012-10-17"
@@ -889,7 +889,7 @@
      ]
     },
     "CodeS3Location": {
-     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/5f7fdc28b4d2a2a195a75141ad16831d44c0683242ac3207657c0eed677dbeda.js"
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/52ed91ef14f4fb1fcf1dcb281ff71ecdaa6b76284b839f00e3d69ce35f3dc557.js"
     },
     "DataSourceName": "bedrockDS",
     "Name": "Fn_Query_askBedrock_1",
@@ -1058,7 +1058,7 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/1VQTW/CMAz9LdxDxroddi2dtklDiFFp18qkphjSpItTqqrqf5/SQoHT+5KtZ0cyil7lYgYNz1V+mmvayW6N7DFPPaiTgIazDqqKW6Nk9+mgOvzpuKIlMIpkbwbnZxVXdKdSdcASghFX9I2tWFuD7+AhtbVTw9yd+vK+egw/aqM8WZNYs6eidhBECLbIVp/R9YJfZLes1Ql98C9shI3VpNqbfdGjCL3DdNblWGnblmi8HKP3yRDAjJ5lHKAXGspdDrJL9mYFLbpfdBwKpWQKjd5OfcVE7o7oBUEpu63Vw20D3iqOrBfMpexS78gUG3BQokc35FfR9yKp2dsy/OD6qImPFTMd6mXQsNIk44YTTUNjMVySeijIFOK24WHhxtkz5ejGFxmbozzy0zlayOc3uZgdmWjuauOpRLkd8R/q7ty3PwIAAA=="
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/1VQTW/CMAz9LdxDxjpN2rV02iYNIUalXSuTmmJIky5Oqaqq/31KCwVO70u2nh3JKHqVixk0PFf5aa5pJ7s1ssc89aBOAhrOOqgqbo2S3aeD6vCn44qWwCiSvRmcn1Vc0Z1K1QFLCEZc0Te2Ym0NvoOH1NZODXN36sv76jH8qI3yZE1izZ6K2kEQIdgiW31G1wt+kd2yVif0wb+wETZWk2pv9kWPIvQO01mXY6VtW6LxcozeJ0MAM3qWcYBeaCh3Ocgu2ZsVtOh+0XEolJIpNHo79RUTuTuiFwSl7LZWD7cNeKs4sl4wl7JLvSNTbMBBiR7dkF9F34ukZm/L8IProyY+Vsx0qJdBw0qTjBtONA2NxXBJ6qEgU4jbhoeFG2fPlKMbX2RsjvLIT+doIZ/f5GJ2ZKK5q42nEuV2xH8GY2/LPwIAAA=="
    },
    "Metadata": {
     "aws:cdk:path": "amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data/CDKMetadata/Default"

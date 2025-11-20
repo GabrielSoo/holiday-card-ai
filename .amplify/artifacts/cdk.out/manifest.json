@@ -1,19 +1,19 @@
 {
   "version": "48.0.0",
   "artifacts": {
-    "amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e.assets": {
+    "amplify-holidaycardai-gabriel-sandbox-b3d46eac34.assets": {
       "type": "cdk:asset-manifest",
       "properties": {
-        "file": "amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e.assets.json",
+        "file": "amplify-holidaycardai-gabriel-sandbox-b3d46eac34.assets.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
       }
     },
-    "amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e": {
+    "amplify-holidaycardai-gabriel-sandbox-b3d46eac34": {
       "type": "aws:cloudformation:stack",
       "environment": "aws://unknown-account/unknown-region",
       "properties": {
-        "templateFile": "amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e.template.json",
+        "templateFile": "amplify-holidaycardai-gabriel-sandbox-b3d46eac34.template.json",
         "terminationProtection": false,
         "tags": {
           "amplify:deployment-type": "sandbox",
@@ -22,11 +22,11 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/096fe59265357a22731928ad96f5692fc22dd7f363677c20f57e9e96895de905.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/7bbe101393bd6af57dd3921e3a91041047f054ee90f31611bcc38965d99be602.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
-          "amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e.assets"
+          "amplify-holidaycardai-gabriel-sandbox-b3d46eac34.assets"
         ],
         "lookupRole": {
           "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
@@ -35,10 +35,10 @@
         }
       },
       "dependencies": [
-        "amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e.assets"
+        "amplify-holidaycardai-gabriel-sandbox-b3d46eac34.assets"
       ],
       "metadata": {
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34": [
           {
             "type": "aws:cdk:stack-tags",
             "data": [
@@ -53,43 +53,43 @@
             ]
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/deploymentType": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/deploymentType": [
           {
             "type": "aws:cdk:logicalId",
             "data": "deploymentType"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/region": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/region": [
           {
             "type": "aws:cdk:logicalId",
             "data": "region"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/data/amplifyData/GraphQLAPI/Resource": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data/amplifyData/GraphQLAPI/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "amplifyDataGraphQLAPI42A6FA33"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/data/amplifyData/GraphQLAPI/TransformerSchema": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data/amplifyData/GraphQLAPI/TransformerSchema": [
           {
             "type": "aws:cdk:logicalId",
             "data": "amplifyDataGraphQLAPITransformerSchemaFF50A789"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/data/amplifyData/GraphQLAPI/DefaultApiKey": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data/amplifyData/GraphQLAPI/DefaultApiKey": [
           {
             "type": "aws:cdk:logicalId",
             "data": "amplifyDataGraphQLAPIDefaultApiKey1C8ED374"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/data/amplifyData/GraphQLAPI/NONE_DS": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data/amplifyData/GraphQLAPI/NONE_DS": [
           {
             "type": "graphqltransformer:resourceName",
             "data": "NONE_DS"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/data/amplifyData/GraphQLAPI/NONE_DS/Resource": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data/amplifyData/GraphQLAPI/NONE_DS/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "amplifyDataGraphQLAPINONEDS684BF699"
@@ -99,73 +99,73 @@
             "data": "NONE_DS"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/data/amplifyData/AmplifyCodegenAssets/AmplifyCodegenAssetsBucket/Resource": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data/amplifyData/AmplifyCodegenAssets/AmplifyCodegenAssetsBucket/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "amplifyDataAmplifyCodegenAssetsAmplifyCodegenAssetsBucket9CCB4ACA"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/data/amplifyData/AmplifyCodegenAssets/AmplifyCodegenAssetsBucket/Policy/Resource": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data/amplifyData/AmplifyCodegenAssets/AmplifyCodegenAssetsBucket/Policy/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "amplifyDataAmplifyCodegenAssetsAmplifyCodegenAssetsBucketPolicyF1C1C548"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/data/amplifyData/AmplifyCodegenAssets/AmplifyCodegenAssetsBucket/AutoDeleteObjectsCustomResource/Default": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data/amplifyData/AmplifyCodegenAssets/AmplifyCodegenAssetsBucket/AutoDeleteObjectsCustomResource/Default": [
           {
             "type": "aws:cdk:logicalId",
             "data": "amplifyDataAmplifyCodegenAssetsAmplifyCodegenAssetsBucketAutoDeleteObjectsCustomResource437F26F5"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/data/amplifyData/AmplifyCodegenAssets/AmplifyCodegenAssetsDeployment/AwsCliLayer/Resource": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data/amplifyData/AmplifyCodegenAssets/AmplifyCodegenAssetsDeployment/AwsCliLayer/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "amplifyDataAmplifyCodegenAssetsAmplifyCodegenAssetsDeploymentAwsCliLayerE322F905"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/data/amplifyData/AmplifyCodegenAssets/AmplifyCodegenAssetsDeployment/CustomResource-1536MiB/Default": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data/amplifyData/AmplifyCodegenAssets/AmplifyCodegenAssetsDeployment/CustomResource-1536MiB/Default": [
           {
             "type": "aws:cdk:logicalId",
             "data": "amplifyDataAmplifyCodegenAssetsAmplifyCodegenAssetsDeploymentCustomResource1536MiB21775929"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/data/amplifyData/L2GraphqlApi/bedrockDS/ServiceRole/Resource": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data/amplifyData/L2GraphqlApi/bedrockDS/ServiceRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "amplifyDataL2GraphqlApibedrockDSServiceRoleD5BC3C5F"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/data/amplifyData/L2GraphqlApi/bedrockDS/ServiceRole/DefaultPolicy/Resource": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data/amplifyData/L2GraphqlApi/bedrockDS/ServiceRole/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "amplifyDataL2GraphqlApibedrockDSServiceRoleDefaultPolicyC14DA5BE"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/data/amplifyData/L2GraphqlApi/bedrockDS/Resource": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data/amplifyData/L2GraphqlApi/bedrockDS/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "amplifyDataL2GraphqlApibedrockDSD04543E4"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/data/Custom::S3AutoDeleteObjectsCustomResourceProvider": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data/Custom::S3AutoDeleteObjectsCustomResourceProvider": [
           {
             "type": "aws:cdk:is-custom-resource-handler-customResourceProvider",
             "data": true
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/data/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role": [
           {
             "type": "aws:cdk:logicalId",
             "data": "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/data/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler": [
           {
             "type": "aws:cdk:logicalId",
             "data": "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/data/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C1536MiB": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C1536MiB": [
           {
             "type": "aws:cdk:is-custom-resource-handler-singleton",
             "data": true
@@ -183,200 +183,200 @@
             "data": 2
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/data/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C1536MiB/ServiceRole/Resource": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C1536MiB/ServiceRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C1536MiBServiceRoleA41FC8C2"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/data/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C1536MiB/ServiceRole/DefaultPolicy/Resource": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C1536MiB/ServiceRole/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C1536MiBServiceRoleDefaultPolicyFF1C635B"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/data/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C1536MiB/Resource": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C1536MiB/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C1536MiBC5D8AB21"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/data/modelIntrospectionSchemaBucket/Resource": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data/modelIntrospectionSchemaBucket/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "modelIntrospectionSchemaBucketF566B665"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/data/modelIntrospectionSchemaBucket/Policy/Resource": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data/modelIntrospectionSchemaBucket/Policy/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "modelIntrospectionSchemaBucketPolicy4DAB0D15"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/data/modelIntrospectionSchemaBucket/AutoDeleteObjectsCustomResource/Default": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data/modelIntrospectionSchemaBucket/AutoDeleteObjectsCustomResource/Default": [
           {
             "type": "aws:cdk:logicalId",
             "data": "modelIntrospectionSchemaBucketAutoDeleteObjectsCustomResourceFE57309F"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/data/modelIntrospectionSchemaBucketDeployment/AwsCliLayer/Resource": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data/modelIntrospectionSchemaBucketDeployment/AwsCliLayer/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "modelIntrospectionSchemaBucketDeploymentAwsCliLayer13C432F7"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/data/modelIntrospectionSchemaBucketDeployment/CustomResource-1536MiB/Default": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data/modelIntrospectionSchemaBucketDeployment/CustomResource-1536MiB/Default": [
           {
             "type": "aws:cdk:logicalId",
             "data": "modelIntrospectionSchemaBucketDeploymentCustomResource1536MiB104B97EC"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/data/Fn_Query_askBedrock_1": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data/Fn_Query_askBedrock_1": [
           {
             "type": "aws:cdk:logicalId",
             "data": "FnQueryaskBedrock1"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/data/Resolver_Query_askBedrock": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data/Resolver_Query_askBedrock": [
           {
             "type": "aws:cdk:logicalId",
             "data": "ResolverQueryaskBedrock"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/data/AMPLIFY_DATA_GRAPHQL_ENDPOINTParameter/Resource": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data/AMPLIFY_DATA_GRAPHQL_ENDPOINTParameter/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "AMPLIFYDATAGRAPHQLENDPOINTParameter1C2CBB16"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/data/AMPLIFY_DATA_MODEL_INTROSPECTION_SCHEMA_BUCKET_NAMEParameter/Resource": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data/AMPLIFY_DATA_MODEL_INTROSPECTION_SCHEMA_BUCKET_NAMEParameter/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "AMPLIFYDATAMODELINTROSPECTIONSCHEMABUCKETNAMEParameter47BF4F44"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/data/AMPLIFY_DATA_MODEL_INTROSPECTION_SCHEMA_KEYParameter/Resource": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data/AMPLIFY_DATA_MODEL_INTROSPECTION_SCHEMA_KEYParameter/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "AMPLIFYDATAMODELINTROSPECTIONSCHEMAKEYParameterB6AEAE8A"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/data/AMPLIFY_DATA_DEFAULT_NAMEParameter/Resource": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data/AMPLIFY_DATA_DEFAULT_NAMEParameter/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "AMPLIFYDATADEFAULTNAMEParameterE7C23CC4"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/data/CDKMetadata/Default": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data/CDKMetadata/Default": [
           {
             "type": "aws:cdk:logicalId",
             "data": "CDKMetadata"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/data/CDKMetadata/Condition": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data/CDKMetadata/Condition": [
           {
             "type": "aws:cdk:logicalId",
             "data": "CDKMetadataAvailable"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/data/amplifyholidaycardainewsandboxsandbox53b8d81b5edataamplifyDataGraphQLAPI54710045ApiId": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data/amplifyholidaycardaigabrielsandboxb3d46eac34dataamplifyDataGraphQLAPI4E0E1033ApiId": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "amplifyholidaycardainewsandboxsandbox53b8d81b5edataamplifyDataGraphQLAPI54710045ApiId"
+            "data": "amplifyholidaycardaigabrielsandboxb3d46eac34dataamplifyDataGraphQLAPI4E0E1033ApiId"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/data/amplifyholidaycardainewsandboxsandbox53b8d81b5edataamplifyDataGraphQLAPI54710045GraphQLUrl": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data/amplifyholidaycardaigabrielsandboxb3d46eac34dataamplifyDataGraphQLAPI4E0E1033GraphQLUrl": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "amplifyholidaycardainewsandboxsandbox53b8d81b5edataamplifyDataGraphQLAPI54710045GraphQLUrl"
+            "data": "amplifyholidaycardaigabrielsandboxb3d46eac34dataamplifyDataGraphQLAPI4E0E1033GraphQLUrl"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/data/amplifyholidaycardainewsandboxsandbox53b8d81b5edataamplifyDataAmplifyCodegenAssetsAmplifyCodegenAssetsDeploymentCustomResource1536MiBD0EBD278DestinationBucketArn": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data/amplifyholidaycardaigabrielsandboxb3d46eac34dataamplifyDataAmplifyCodegenAssetsAmplifyCodegenAssetsDeploymentCustomResource1536MiB42BCDE0DDestinationBucketArn": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "amplifyholidaycardainewsandboxsandbox53b8d81b5edataamplifyDataAmplifyCodegenAssetsAmplifyCodegenAssetsDeploymentCustomResource1536MiBD0EBD278DestinationBucketArn"
+            "data": "amplifyholidaycardaigabrielsandboxb3d46eac34dataamplifyDataAmplifyCodegenAssetsAmplifyCodegenAssetsDeploymentCustomResource1536MiB42BCDE0DDestinationBucketArn"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/data/amplifyholidaycardainewsandboxsandbox53b8d81b5edataamplifyDataGraphQLAPIDefaultApiKey865F5A6BApiKey": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data/amplifyholidaycardaigabrielsandboxb3d46eac34dataamplifyDataGraphQLAPIDefaultApiKey3E39DDDCApiKey": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "amplifyholidaycardainewsandboxsandbox53b8d81b5edataamplifyDataGraphQLAPIDefaultApiKey865F5A6BApiKey"
+            "data": "amplifyholidaycardaigabrielsandboxb3d46eac34dataamplifyDataGraphQLAPIDefaultApiKey3E39DDDCApiKey"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/data.NestedStack/data.NestedStackResource": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/data.NestedStack/data.NestedStackResource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "data7552DF31"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/awsAppsyncApiId": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/awsAppsyncApiId": [
           {
             "type": "aws:cdk:logicalId",
             "data": "awsAppsyncApiId"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/awsAppsyncApiEndpoint": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/awsAppsyncApiEndpoint": [
           {
             "type": "aws:cdk:logicalId",
             "data": "awsAppsyncApiEndpoint"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/awsAppsyncAuthenticationType": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/awsAppsyncAuthenticationType": [
           {
             "type": "aws:cdk:logicalId",
             "data": "awsAppsyncAuthenticationType"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/awsAppsyncRegion": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/awsAppsyncRegion": [
           {
             "type": "aws:cdk:logicalId",
             "data": "awsAppsyncRegion"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/amplifyApiModelSchemaS3Uri": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/amplifyApiModelSchemaS3Uri": [
           {
             "type": "aws:cdk:logicalId",
             "data": "amplifyApiModelSchemaS3Uri"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/awsAppsyncApiKey": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/awsAppsyncApiKey": [
           {
             "type": "aws:cdk:logicalId",
             "data": "awsAppsyncApiKey"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/awsAppsyncAdditionalAuthenticationTypes": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/awsAppsyncAdditionalAuthenticationTypes": [
           {
             "type": "aws:cdk:logicalId",
             "data": "awsAppsyncAdditionalAuthenticationTypes"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/CDKMetadata/Default": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/CDKMetadata/Default": [
           {
             "type": "aws:cdk:logicalId",
             "data": "CDKMetadata"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/CDKMetadata/Condition": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/CDKMetadata/Condition": [
           {
             "type": "aws:cdk:logicalId",
             "data": "CDKMetadataAvailable"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/BootstrapVersion": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/BootstrapVersion": [
           {
             "type": "aws:cdk:logicalId",
             "data": "BootstrapVersion"
           }
         ],
-        "/amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e/CheckBootstrapVersion": [
+        "/amplify-holidaycardai-gabriel-sandbox-b3d46eac34/CheckBootstrapVersion": [
           {
             "type": "aws:cdk:logicalId",
             "data": "CheckBootstrapVersion"
           }
         ]
       },
-      "displayName": "amplify-holidaycardai-newsandbox-sandbox-53b8d81b5e"
+      "displayName": "amplify-holidaycardai-gabriel-sandbox-b3d46eac34"
     },
     "Tree": {
       "type": "cdk:tree",
@@ -804,5 +804,5 @@
       }
     }
   },
-  "minimumCliVersion": "2.1031.2"
+  "minimumCliVersion": "2.1033.0"
 }
