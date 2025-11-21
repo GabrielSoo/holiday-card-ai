@@ -23,7 +23,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Separator } from "@/components/ui/separator";
 import { Spinner } from "@/components/ui/spinner";
 import { ImageOff, Download, RotateCw } from "lucide-react";
 
@@ -75,7 +74,7 @@ export default function Home() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       background: "",
-      style: "吉布利",
+      style: "watercolor",
       text: "",
       image: "",
     },
@@ -157,9 +156,9 @@ export default function Home() {
                       <SelectValue placeholder="選擇背景" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="hong-kong">香港</SelectItem>
-                      <SelectItem value="london">倫敦</SelectItem>
-                      <SelectItem value="village">聖誕村莊</SelectItem>
+                      <SelectItem value="harbour">維多利亞港</SelectItem>
+                      <SelectItem value="peak">山頂</SelectItem>
+                      <SelectItem value="city">香港城市</SelectItem>
                     </SelectContent>
                   </Select>
                   <FieldError
@@ -306,9 +305,18 @@ export default function Home() {
 
               {/* Prompt */}
               {currentPrompt && (
-                <div className="border border-gray-200 bg-gray-50 rounded-xl p-6">
-                  <p className="font-semibold mb-1">Prompt:</p>
-                  <p className="whitespace-pre-wrap">{currentPrompt}</p>
+                <div className="border border-gray-200 bg-gray-50 rounded-xl p-6 space-y-4">
+                  <p className="font-semibold text-lg">Prompt:</p>
+                  <div className="space-y-3 leading-relaxed">
+                    {currentPrompt.split("\n").map(
+                      (line, index) =>
+                        line.trim() && (
+                          <p key={index} className="text-gray-700">
+                            {line}
+                          </p>
+                        )
+                    )}
+                  </div>
                 </div>
               )}
 

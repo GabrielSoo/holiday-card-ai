@@ -60,7 +60,7 @@
       "ApiId"
      ]
     },
-    "Expires": 1766218021
+    "Expires": 1766300039
    },
    "UpdateReplacePolicy": "Delete",
    "DeletionPolicy": "Delete",
@@ -889,7 +889,7 @@
      ]
     },
     "CodeS3Location": {
-     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/52ed91ef14f4fb1fcf1dcb281ff71ecdaa6b76284b839f00e3d69ce35f3dc557.js"
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/a257edd2ad39cb3710697aa7bbbabbbf7c9c41f4d8f9a0fdcd513ab83e0acfe8.js"
     },
     "DataSourceName": "bedrockDS",
     "Name": "Fn_Query_askBedrock_1",

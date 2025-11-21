@@ -6,9 +6,9 @@ import { amplifyClient } from "@/app/amplify-utils";
  */
 function getBackgroundDescription(background: string): string {
   const backgroundMap: Record<string, string> = {
-    "hong-kong": "The Hong Kong skyline should be clearly visible and prominent in the background, wide panoramic view, recognizable IFC, ICC, and Bank of China Tower silhouettes, Victoria Harbour visible, occupying the upper half of the scene, not obscured by the foreground, iconic Hong Kong cityscape",
-    "london": "The London skyline featuring Big Ben, the London Eye, and Tower Bridge should be clearly visible and prominent in the background, wide panoramic view across the Thames River, recognizable iconic landmarks, occupying the upper half of the scene, not obscured by the foreground, classic British architecture",
-    "village": "A charming Christmas village scene with snow-covered cottages, church steeple, cobblestone streets lined with decorated shops, warm glowing windows, street lamps with wreaths, snow-covered rooftops with chimneys emitting smoke, wide panoramic village view in the background, festive and cozy atmosphere"
+    "harbour": "Hong Kong Victoria Harbour, wide panoramic composition, featuring the silhouettes of IFC, ICC, and Bank of China Tower clearly readable. The skyline and harbour occupy the upper half of the scene with rich hand-painted detail, atmospheric perspective, drifting clouds, warm light glowing on the harbour water",
+    "peak": "Hong Kong’s iconic Victoria Peak, wide elevated view, lush green mountainside with terraced trees and sloping paths, featuring the Peak Tram ascending at a visible angle in the midground. Include historic red tram carriage with small glowing windows and soft reflected light. The scene should show the elevated view overlooking the harbour and city far below with subtle lights, atmospheric perspective, drifting clouds, and warm golden evening tones.",
+    "city": "A wide Hong Kong street scene from a slightly elevated perspective, with towering high-rise skyscrapers, neon shop signs, colorful billboards, and iconic red vertical Cantonese signage stretching far into the distance. Include green minibuses, red taxis, street vendors, and pedestrians in foreground, midground, and background layers. Overhead sign, and urban clutter add richness and scale. Atmospheric haze, reflections on wet pavement, and warm glowing lights enhance the bustling night-time city vibe and sense of depth."
   };
 
   return backgroundMap[background] || background;
@@ -19,9 +19,9 @@ function getBackgroundDescription(background: string): string {
  */
 function getStyleDescription(style: string): string {
   const styleMap: Record<string, string> = {
-    "吉布利": "A whimsical Studio Ghibli-style illustration with warm watercolor textures, soft shading, cozy festive atmosphere, gentle falling snow.",
-    "寫實": "Photorealistic style, highly detailed, natural lighting, realistic textures and shadows, professional photography quality, crisp details, lifelike rendering",
-    "素描": "Pencil sketch style, hand-drawn illustration, visible sketch lines, artistic shading with cross-hatching, black and white with subtle grey tones, artistic and expressive"
+    "watercolor": "Studio Ghibli anime, hand-drawn watercolor look, soft confident linework, pastel colors, textured brush-style shading, subtle grain, traditional animation background aesthetics, warm whimsical mood, painterly surfaces, distinctly illustrated finish.",
+    "realistic": " Ultra-realistic high-end advertising style, photorealistic, cinematic lighting. All natural elements (mountains, trees, vegetation, clouds) and architectural elements (buildings, roads, tram, harbour) should appear fully photo-real, with realistic textures, accurate proportions, and natural details. Sharp high-resolution detail, precise shadows, reflections, and subtle depth of field.",
+    "papercraft": "Paper craft / cutout style, handcrafted aesthetic, layered paper textures with visible edges, shadows and subtle depth between layers, crisp clean shapes, colorful and tactile surfaces. Natural and architectural elements (mountains, trees, buildings, vehicles) rendered as stylized paper cutouts, with slight dimensionality and soft shadowing for depth."
   };
 
   return styleMap[style] || style;
@@ -38,17 +38,17 @@ export async function generateHolidayCard(formData: FormData) {
    const styleDescription = getStyleDescription(style);
 
    // Build the full prompt text (same as in bedrock.js)
-   const fullPrompt = `Create a illustration with the following specifications:
-- Background setting: ${backgroundDescription}
-- Artistic style: ${styleDescription}
-- High Quality, Highly detailed background environment.`;
+   const fullPrompt = `A Christmas card front cover illustration.
+Background: ${backgroundDescription}
+Artistic style: ${styleDescription}`;
+
+   console.log("Full prompt being sent:", fullPrompt);
 
   const response = await amplifyClient.queries.askBedrock({
-    background: backgroundDescription,
-    style: styleDescription,
+    prompt: fullPrompt,
     image,
   });
-
+  
   const rawBody = response.data?.body;
   console.log("Bedrock raw response body:", rawBody);
   if (!rawBody) {

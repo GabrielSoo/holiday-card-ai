@@ -7,21 +7,27 @@ import Image from "next/image";
 
 const artStyles = [
   {
-    value: "吉布利",
+    value: "watercolor",
     image: "/styles/ghibli.webp",
     overlay: 0.3,
   },
   {
-    value: "現實",
+    value: "realistic",
     image: "/styles/realistic.webp",
     overlay: 0.4,
   },
   {
-    value: "素描",
-    image: "/styles/sketch.webp",
+    value: "papercraft",
+    image: "/styles/paper-craft.webp",
     overlay: 0.5,
   },
 ];
+
+const styleMapEnglishToChinese: Record<string, string> = {
+  watercolor: "吉布利",
+  realistic: "寫實",
+  papercraft: "紙藝",
+};
 
 interface StyleSelectorProps {
   value?: string;
@@ -64,7 +70,7 @@ export default function StyleSelector({
                 style={{ opacity: style.overlay }}
               />
               <span className="absolute bottom-3 left-3 text-lg md:text-xl lg:text-2xl font-bold text-white z-10">
-                {style.value}
+                {styleMapEnglishToChinese[style.value]}
               </span>
             </Label>
           </div>
