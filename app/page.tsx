@@ -34,6 +34,7 @@ import StyleSelector from "@/features/style-select";
 
 import { compositeTextOnImage } from "@/lib/image-utils";
 import { generateHolidayCard } from "./actions";
+import { getCantonesePrompt } from "@/lib/prompts";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -103,7 +104,9 @@ export default function Home() {
       }
 
       // Save the full prompt
-      setCurrentPrompt(fullPrompt);
+      const cantonesePrompt = getCantonesePrompt(data.background, data.style);
+
+      setCurrentPrompt(cantonesePrompt);
 
       // Step 2: Composite text onto the image
       const compositedImage = await compositeTextOnImage(
@@ -260,10 +263,9 @@ export default function Home() {
                 <EmptyMedia variant="icon">
                   <ImageOff className="size-8" />
                 </EmptyMedia>
-                <EmptyTitle>No Creations Yet</EmptyTitle>
+                <EmptyTitle>未有創作</EmptyTitle>
                 <EmptyDescription>
-                  You haven't created any holiday cards yet. Create your first
-                  holiday card to get started.
+                  你仲未整任何節日卡片。整第一張節日卡片嚟開始。
                 </EmptyDescription>
               </EmptyHeader>
             </Empty>

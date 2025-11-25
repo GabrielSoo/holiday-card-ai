@@ -99,30 +99,30 @@
         }
       }
     },
-    "ce6d2bc3cc674b36f58d5dc7d9ebbea96c6630cec34a66f60d83fee72593d6c4": {
+    "f4eeebe12bbd9146e721b486c2d5e997dfcc11ccf564bf23d47106742a3f1f63": {
       "displayName": "data Nested Stack Template",
       "source": {
         "path": "amplifyholidaycardaigabrielsandboxb3d46eac34data4B8AA5F6.nested.template.json",
         "packaging": "file"
       },
       "destinations": {
-        "current_account-current_region-5420e2a6": {
+        "current_account-current_region-8bbc4def": {
           "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}",
-          "objectKey": "ce6d2bc3cc674b36f58d5dc7d9ebbea96c6630cec34a66f60d83fee72593d6c4.json",
+          "objectKey": "f4eeebe12bbd9146e721b486c2d5e997dfcc11ccf564bf23d47106742a3f1f63.json",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-${AWS::Region}"
         }
       }
     },
-    "a4aff4fd82c05afcc48490e0353bb4f815f3b9d305b6d6948e2f56088f31ebd8": {
+    "02edecaf5952fc1353b5f8ae3f77750510a39fb73614d65eee2efcb406638c6e": {
       "displayName": "amplify-holidaycardai-gabriel-sandbox-b3d46eac34 Template",
       "source": {
         "path": "amplify-holidaycardai-gabriel-sandbox-b3d46eac34.template.json",
         "packaging": "file"
       },
       "destinations": {
-        "current_account-current_region-96a04076": {
+        "current_account-current_region-feb6a96e": {
           "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}",
-          "objectKey": "a4aff4fd82c05afcc48490e0353bb4f815f3b9d305b6d6948e2f56088f31ebd8.json",
+          "objectKey": "02edecaf5952fc1353b5f8ae3f77750510a39fb73614d65eee2efcb406638c6e.json",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-${AWS::Region}"
         }
       }

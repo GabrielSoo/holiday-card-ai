@@ -7,7 +7,7 @@ import Image from "next/image";
 
 const artStyles = [
   {
-    value: "watercolor",
+    value: "cartoon",
     image: "/styles/ghibli.webp",
     overlay: 0.3,
   },
@@ -24,7 +24,7 @@ const artStyles = [
 ];
 
 const styleMapEnglishToChinese: Record<string, string> = {
-  watercolor: "吉布利",
+  cartoon: "卡通",
   realistic: "寫實",
   papercraft: "紙藝",
 };
