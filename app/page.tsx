@@ -138,12 +138,21 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="flex flex-col md:flex-row min-h-[calc(100vh-10rem)] container mx-auto py-8 px-6 md:px-12 max-w-screen-2xl gap-8">
+      <main className="flex flex-col md:flex-row min-h-[calc(100vh-10rem)] container mx-auto py-6 px-6 md:px-12 max-w-screen-2xl gap-8">
         {/* Left Section */}
         <section className="md:w-[40%] lg:w-[35%] flex flex-col space-y-8">
-          <h1 className=" text-2xl font-bold text-gray-900 md:text-3xl">
-            製作你嘅完美聖誕卡
-          </h1>
+          <div className="flex flex-col items-center md:items-start">
+            <Image
+              src="/futurepoweredup.svg"
+              alt="Logo"
+              width={200}
+              height={200}
+              className="-ml-2"
+            />
+            <h1 className=" text-2xl font-bold text-gray-900 md:text-3xl">
+              製作你嘅完美聖誕卡
+            </h1>
+          </div>
 
           <form onSubmit={handleSubmit(onSubmit)}>
             <FieldGroup>
