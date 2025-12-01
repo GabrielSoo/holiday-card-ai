@@ -43,7 +43,10 @@ import { z } from "zod";
 const formSchema = z.object({
   background: z.string().min(1, "請選擇背景"),
   style: z.string().min(1, "請選擇藝術風格"),
-  text: z.string().min(1, "請輸入封面文字"),
+  text: z
+    .string()
+    .min(1, "請輸入封面文字")
+    .max(50, "文字不能超過50個字"),
   image: z.string().min(1, "請上載圖片"),
 });
 
